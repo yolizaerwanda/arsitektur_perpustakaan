@@ -11,8 +11,10 @@ import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 
 @Configuration
+@Lazy
 public class RabbitMQConfig {
 
     @Value("${app.rabbitmq.queue}")
@@ -25,16 +27,19 @@ public class RabbitMQConfig {
     private String routingKey;
 
     @Bean
+    @Lazy
     public Queue queue() {
         return new Queue(queueName, true);
     }
 
     @Bean
+    @Lazy
     public DirectExchange exchange() {
         return new DirectExchange(exchangeName);
     }
 
     @Bean
+    @Lazy
     public Binding binding(Queue queue, DirectExchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with(routingKey);
     }
@@ -45,6 +50,7 @@ public class RabbitMQConfig {
     }
 
     @Bean
+    @Lazy
     public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(jsonMessageConverter());

@@ -17,7 +17,7 @@ public class EmailService {
 
     private static final Logger log = LoggerFactory.getLogger(EmailService.class);
 
-    @Autowired
+    @Autowired(required = false)
     private JavaMailSender mailSender;
 
     /**
@@ -41,6 +41,10 @@ public class EmailService {
             message.setSubject("📚 Notifikasi Peminjaman Buku - Perpustakaan");
             message.setText(buildPeminjamanEmailBody(namaAnggota, judulBuku, tanggalPinjam, tanggalKembali));
 
+            if (mailSender == null) {
+                log.warn("⚠️ JavaMailSender not configured, skip sending email");
+                return;
+            }
             mailSender.send(message);
             log.info("✅ Email peminjaman berhasil dikirim ke: {}", toEmail);
         } catch (Exception e) {

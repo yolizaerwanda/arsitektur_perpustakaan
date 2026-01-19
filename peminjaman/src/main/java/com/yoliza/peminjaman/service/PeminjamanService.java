@@ -31,6 +31,7 @@ public class PeminjamanService {
     private RestTemplate restTemplate;
 
     @Autowired
+    @org.springframework.context.annotation.Lazy
     private RabbitMQProducerService rabbitMQProducerService;
 
     public List<PeminjamanModel> getAllPeminjaman() {

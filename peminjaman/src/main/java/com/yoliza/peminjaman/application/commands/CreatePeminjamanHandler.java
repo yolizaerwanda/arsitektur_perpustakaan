@@ -35,6 +35,7 @@ public class CreatePeminjamanHandler implements CommandHandler<CreatePeminjamanC
     private RestTemplate restTemplate;
 
     @Autowired
+    @org.springframework.context.annotation.Lazy
     private RabbitMQProducerService rabbitMQProducerService;
 
     @Override

@@ -6,6 +6,7 @@ import org.slf4j.MDC;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.yoliza.peminjaman.dto.PeminjamanEventDTO;
@@ -16,11 +17,13 @@ import static net.logstash.logback.argument.StructuredArguments.kv;
  * RabbitMQ Producer Service dengan Structured Logging
  */
 @Service
+@Lazy
 public class RabbitMQProducerService {
 
     private static final Logger log = LoggerFactory.getLogger(RabbitMQProducerService.class);
 
     @Autowired
+    @Lazy
     private RabbitTemplate rabbitTemplate;
 
     @Value("${app.rabbitmq.exchange}")

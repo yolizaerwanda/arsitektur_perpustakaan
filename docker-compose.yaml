@@ -25,8 +25,8 @@ services:
       - "5672:5672"   # AMQP protocol
       - "15672:15672" # Management UI
     environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: password
     networks:
       - microservices-network
     healthcheck:
@@ -120,7 +120,7 @@ services:
       SPRING_RABBITMQ_PASSWORD: password
       
       # H2 Database Configuration
-      SPRING_DATASOURCE_URL: jdbc:h2:file:/app/data/anggota;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
+      SPRING_DATASOURCE_URL: jdbc:h2:file:/data/anggota;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.h2.Driver
       SPRING_DATASOURCE_USERNAME: sa
       SPRING_DATASOURCE_PASSWORD: password
@@ -168,7 +168,7 @@ services:
       SPRING_RABBITMQ_PASSWORD: password
       
       # H2 Database Configuration
-      SPRING_DATASOURCE_URL: jdbc:h2:file:/app/data/buku;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
+      SPRING_DATASOURCE_URL: jdbc:h2:file:/data/buku;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.h2.Driver
       SPRING_DATASOURCE_USERNAME: sa
       SPRING_DATASOURCE_PASSWORD: password
@@ -216,7 +216,7 @@ services:
       SPRING_RABBITMQ_PASSWORD: password
       
       # H2 Database Configuration
-      SPRING_DATASOURCE_URL: jdbc:h2:file:/app/data/peminjaman;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
+      SPRING_DATASOURCE_URL: jdbc:h2:file:/data/peminjaman;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.h2.Driver
       SPRING_DATASOURCE_USERNAME: sa
       SPRING_DATASOURCE_PASSWORD: password
@@ -269,7 +269,7 @@ services:
       SPRING_RABBITMQ_PASSWORD: password
       
       # H2 Database Configuration
-      SPRING_DATASOURCE_URL: jdbc:h2:file:/app/data/pengembalian;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
+      SPRING_DATASOURCE_URL: jdbc:h2:file:/data/pengembalian;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.h2.Driver
       SPRING_DATASOURCE_USERNAME: sa
       SPRING_DATASOURCE_PASSWORD: password

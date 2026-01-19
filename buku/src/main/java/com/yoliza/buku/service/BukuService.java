@@ -11,27 +11,26 @@ import com.yoliza.buku.repository.BukuRepository;
 @Service
 public class BukuService {
     @Autowired
-
-    private BukuRepository BukuRepository;
+    private BukuRepository bukuRepository;
 
     public List<BukuModel> getAllBuku() {
-        return BukuRepository.findAll();
+        return bukuRepository.findAll();
     }
 
     public BukuModel getBukuById(Long id) {
-        return BukuRepository.findById(id).orElse(null);
+        return bukuRepository.findById(id).orElse(null);
     }
 
     public BukuModel createBuku(BukuModel buku) {
-        return BukuRepository.save(buku);
+        return bukuRepository.save(buku);
     }
 
     public void deleteBuku(Long id) {
-        BukuRepository.deleteById(id);
+        bukuRepository.deleteById(id);
     }
 
     public BukuModel updateBuku(Long id, BukuModel bukuUpdate) {
-        return BukuRepository.findById(id)
+        return bukuRepository.findById(id)
                 .map(existingBuku -> {
                     if (bukuUpdate.getJudul() != null) {
                         existingBuku.setJudul(bukuUpdate.getJudul());
@@ -45,7 +44,7 @@ public class BukuService {
                     if (bukuUpdate.getTahun_terbit() != null) {
                         existingBuku.setTahun_terbit(bukuUpdate.getTahun_terbit());
                     }
-                    return BukuRepository.save(existingBuku);
+                    return bukuRepository.save(existingBuku);
                 })
                 .orElse(null);
     }
