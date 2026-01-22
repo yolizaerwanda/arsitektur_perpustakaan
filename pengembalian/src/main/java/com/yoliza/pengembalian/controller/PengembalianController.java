@@ -35,7 +35,7 @@ public class PengembalianController {
     public List<PengembalianModel> getAllPengembalian() {
         log.info("Request received", kv("action", "GET_ALL"));
         List<PengembalianModel> result = pengembalianService.getAllPengembalian();
-        log.info("Request completed", kv("action", "GET_ALL"), kv("status", "SUCCESS"), kv("count", result.size()));
+        log.info("Request completed", kv("action", "GET_ALL"), kv("status", "SUKSES"), kv("count", result.size()));
         return result;
     }
 
@@ -44,7 +44,7 @@ public class PengembalianController {
         log.info("Request received", kv("action", "GET_BY_ID"), kv("id", id));
         PengembalianModel pengembalian = pengembalianService.getPengembalianById(id);
         if (pengembalian != null) {
-            log.info("Request completed", kv("action", "GET_BY_ID"), kv("status", "SUCCESS"), kv("id", id));
+            log.info("Request completed", kv("action", "GET_BY_ID"), kv("status", "SUKSES"), kv("id", id));
             return ResponseEntity.ok(pengembalian);
         } else {
             log.warn("Request completed", kv("action", "GET_BY_ID"), kv("status", "NOT_FOUND"), kv("id", id));
@@ -56,7 +56,7 @@ public class PengembalianController {
     public List<ResponseTemplate> getPengembalianWithPeminjamanById(@PathVariable Long id) {
         log.info("Request received", kv("action", "GET_WITH_PEMINJAMAN"), kv("id", id));
         List<ResponseTemplate> result = pengembalianService.getPengembalianWithPeminjamanById(id);
-        log.info("Request completed", kv("action", "GET_WITH_PEMINJAMAN"), kv("status", "SUCCESS"),
+        log.info("Request completed", kv("action", "GET_WITH_PEMINJAMAN"), kv("status", "SUKSES"),
                 kv("count", result.size()));
         return result;
     }
@@ -65,7 +65,7 @@ public class PengembalianController {
     public PengembalianModel createPengembalian(@RequestBody PengembalianModel pengembalian) {
         log.info("Request received", kv("action", "CREATE"), kv("peminjamanId", pengembalian.getPeminjamanId()));
         PengembalianModel result = pengembalianService.createPengembalian(pengembalian);
-        log.info("Request completed", kv("action", "CREATE"), kv("status", "SUCCESS"), kv("id", result.getId()));
+        log.info("Request completed", kv("action", "CREATE"), kv("status", "SUKSES"), kv("id", result.getId()));
         return result;
     }
 
@@ -89,7 +89,7 @@ public class PengembalianController {
             return ResponseEntity.notFound().build();
         }
 
-        log.info("Request completed", kv("action", "PROSES_PENGEMBALIAN"), kv("status", "SUCCESS"),
+        log.info("Request completed", kv("action", "PROSES_PENGEMBALIAN"), kv("status", "SUKSES"),
                 kv("id", result.getId()), kv("denda", result.getDenda()));
         return ResponseEntity.ok(result);
     }
@@ -100,7 +100,7 @@ public class PengembalianController {
         log.info("Request received", kv("action", "UPDATE"), kv("id", id));
         PengembalianModel updated = pengembalianService.updatePengembalian(id, pengembalian);
         if (updated != null) {
-            log.info("Request completed", kv("action", "UPDATE"), kv("status", "SUCCESS"), kv("id", id));
+            log.info("Request completed", kv("action", "UPDATE"), kv("status", "SUKSES"), kv("id", id));
             return ResponseEntity.ok(updated);
         } else {
             log.warn("Request completed", kv("action", "UPDATE"), kv("status", "NOT_FOUND"), kv("id", id));
@@ -112,7 +112,7 @@ public class PengembalianController {
     public ResponseEntity<Void> deletePengembalian(@PathVariable Long id) {
         log.info("Request received", kv("action", "DELETE"), kv("id", id));
         pengembalianService.deletePengembalian(id);
-        log.info("Request completed", kv("action", "DELETE"), kv("status", "SUCCESS"), kv("id", id));
+        log.info("Request completed", kv("action", "DELETE"), kv("status", "SUKSES"), kv("id", id));
         return ResponseEntity.ok().build();
     }
 }

@@ -33,7 +33,7 @@ public class AnggotaController {
     public List<AnggotaModel> getAllAnggota() {
         log.info("Request received", kv("action", "GET_ALL"));
         List<AnggotaModel> result = anggotaService.getAllAnggota();
-        log.info("Request completed", kv("action", "GET_ALL"), kv("status", "SUCCESS"), kv("count", result.size()));
+        log.info("Request completed", kv("action", "GET_ALL"), kv("status", "SUKSES"), kv("count", result.size()));
         return result;
     }
 
@@ -42,7 +42,7 @@ public class AnggotaController {
         log.info("Request received", kv("action", "GET_BY_ID"), kv("id", id));
         AnggotaModel anggota = anggotaService.getAnggotaById(id);
         if (anggota != null) {
-            log.info("Request completed", kv("action", "GET_BY_ID"), kv("status", "SUCCESS"), kv("id", id));
+            log.info("Request completed", kv("action", "GET_BY_ID"), kv("status", "SUKSES"), kv("id", id));
             return ResponseEntity.ok(anggota);
         } else {
             log.warn("Request completed", kv("action", "GET_BY_ID"), kv("status", "NOT_FOUND"), kv("id", id));
@@ -54,7 +54,7 @@ public class AnggotaController {
     public AnggotaModel creteAnggota(@RequestBody AnggotaModel anggota) {
         log.info("Request received", kv("action", "CREATE"), kv("nim", anggota.getNim()));
         AnggotaModel result = anggotaService.createAnggota(anggota);
-        log.info("Request completed", kv("action", "CREATE"), kv("status", "SUCCESS"), kv("id", result.getId()));
+        log.info("Request completed", kv("action", "CREATE"), kv("status", "SUKSES"), kv("id", result.getId()));
         return result;
     }
 
@@ -62,7 +62,7 @@ public class AnggotaController {
     public ResponseEntity<Void> deleteAnggota(@PathVariable Long id) {
         log.info("Request received", kv("action", "DELETE"), kv("id", id));
         anggotaService.deleteAnggota(id);
-        log.info("Request completed", kv("action", "DELETE"), kv("status", "SUCCESS"), kv("id", id));
+        log.info("Request completed", kv("action", "DELETE"), kv("status", "SUKSES"), kv("id", id));
         return ResponseEntity.noContent().build();
     }
 
@@ -71,7 +71,7 @@ public class AnggotaController {
         log.info("Request received", kv("action", "UPDATE"), kv("id", id));
         AnggotaModel updated = anggotaService.updateAnggota(id, anggota);
         if (updated != null) {
-            log.info("Request completed", kv("action", "UPDATE"), kv("status", "SUCCESS"), kv("id", id));
+            log.info("Request completed", kv("action", "UPDATE"), kv("status", "SUKSES"), kv("id", id));
             return ResponseEntity.ok(updated);
         } else {
             log.warn("Request completed", kv("action", "UPDATE"), kv("status", "NOT_FOUND"), kv("id", id));

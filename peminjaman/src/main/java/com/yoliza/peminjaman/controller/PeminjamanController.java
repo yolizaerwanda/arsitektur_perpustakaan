@@ -73,7 +73,7 @@ public class PeminjamanController {
     public List<PeminjamanDTO> getAllPeminjaman() {
         log.info("Query received", kv("action", "GET_ALL"), kv("type", "QUERY"));
         List<PeminjamanDTO> result = getAllHandler.handle(new GetAllPeminjamanQuery());
-        log.info("Query completed", kv("action", "GET_ALL"), kv("status", "SUCCESS"), kv("count", result.size()));
+        log.info("Query completed", kv("action", "GET_ALL"), kv("status", "SUKSES"), kv("count", result.size()));
         return result;
     }
 
@@ -82,7 +82,7 @@ public class PeminjamanController {
         log.info("Query received", kv("action", "GET_BY_ID"), kv("type", "QUERY"), kv("id", id));
         PeminjamanDTO peminjaman = getByIdHandler.handle(new GetPeminjamanByIdQuery(id));
         if (peminjaman != null) {
-            log.info("Query completed", kv("action", "GET_BY_ID"), kv("status", "SUCCESS"), kv("id", id));
+            log.info("Query completed", kv("action", "GET_BY_ID"), kv("status", "SUKSES"), kv("id", id));
             return ResponseEntity.ok(peminjaman);
         } else {
             log.warn("Query completed", kv("action", "GET_BY_ID"), kv("status", "NOT_FOUND"), kv("id", id));
@@ -94,7 +94,7 @@ public class PeminjamanController {
     public List<ResponseTemplate> getPeminjamanWithAnggotaById(@PathVariable Long id) {
         log.info("Query received", kv("action", "GET_WITH_DETAILS"), kv("type", "QUERY"), kv("peminjamanId", id));
         List<ResponseTemplate> result = getWithDetailsHandler.handle(new GetPeminjamanWithDetailsQuery(id));
-        log.info("Query completed", kv("action", "GET_WITH_DETAILS"), kv("status", "SUCCESS"),
+        log.info("Query completed", kv("action", "GET_WITH_DETAILS"), kv("status", "SUKSES"),
                 kv("count", result.size()));
         return result;
     }
@@ -109,7 +109,7 @@ public class PeminjamanController {
                     kv("anggotaId", anggotaId));
             return ResponseEntity.notFound().build();
         }
-        log.info("Query completed", kv("action", "GET_BY_ANGGOTA_ID"), kv("status", "SUCCESS"),
+        log.info("Query completed", kv("action", "GET_BY_ANGGOTA_ID"), kv("status", "SUKSES"),
                 kv("count", peminjamanList.size()));
         return ResponseEntity.ok(peminjamanList);
     }
@@ -122,7 +122,7 @@ public class PeminjamanController {
                 kv("anggotaId", peminjaman.getAnggotaId()), kv("bukuId", peminjaman.getBukuId()));
         CommandResult result = createHandler.handle(new CreatePeminjamanCommand(peminjaman));
         if (result.isSuccess()) {
-            log.info("Command completed", kv("action", "CREATE"), kv("status", "SUCCESS"), kv("id", result.getId()));
+            log.info("Command completed", kv("action", "CREATE"), kv("status", "SUKSES"), kv("id", result.getId()));
             return ResponseEntity.status(201).body(result);
         }
         log.error("Command failed", kv("action", "CREATE"), kv("status", "FAILED"), kv("error", result.getMessage()));
@@ -135,7 +135,7 @@ public class PeminjamanController {
         log.info("Command received", kv("action", "UPDATE"), kv("type", "COMMAND"), kv("id", id));
         CommandResult result = updateHandler.handle(new UpdatePeminjamanCommand(id, peminjaman));
         if (result != null && result.isSuccess()) {
-            log.info("Command completed", kv("action", "UPDATE"), kv("status", "SUCCESS"), kv("id", id));
+            log.info("Command completed", kv("action", "UPDATE"), kv("status", "SUKSES"), kv("id", id));
             return ResponseEntity.ok(result);
         }
         log.warn("Command completed", kv("action", "UPDATE"), kv("status", "NOT_FOUND"), kv("id", id));
@@ -146,7 +146,7 @@ public class PeminjamanController {
     public ResponseEntity<CommandResult> deletePeminjaman(@PathVariable Long id) {
         log.info("Command received", kv("action", "DELETE"), kv("type", "COMMAND"), kv("id", id));
         CommandResult result = deleteHandler.handle(new DeletePeminjamanCommand(id));
-        log.info("Command completed", kv("action", "DELETE"), kv("status", "SUCCESS"), kv("id", id));
+        log.info("Command completed", kv("action", "DELETE"), kv("status", "SUKSES"), kv("id", id));
         return ResponseEntity.ok(result);
     }
 }

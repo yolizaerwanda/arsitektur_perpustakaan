@@ -33,7 +33,7 @@ public class BukuController {
     public List<BukuModel> getAllBuku() {
         log.info("Request received", kv("action", "GET_ALL"));
         List<BukuModel> result = bukuService.getAllBuku();
-        log.info("Request completed", kv("action", "GET_ALL"), kv("status", "SUCCESS"), kv("count", result.size()));
+        log.info("Request completed", kv("action", "GET_ALL"), kv("status", "SUKSES"), kv("count", result.size()));
         return result;
     }
 
@@ -42,7 +42,7 @@ public class BukuController {
         log.info("Request received", kv("action", "GET_BY_ID"), kv("id", id));
         BukuModel buku = bukuService.getBukuById(id);
         if (buku != null) {
-            log.info("Request completed", kv("action", "GET_BY_ID"), kv("status", "SUCCESS"), kv("id", id));
+            log.info("Request completed", kv("action", "GET_BY_ID"), kv("status", "SUKSES"), kv("id", id));
             return ResponseEntity.ok(buku);
         } else {
             log.warn("Request completed", kv("action", "GET_BY_ID"), kv("status", "NOT_FOUND"), kv("id", id));
@@ -54,7 +54,7 @@ public class BukuController {
     public BukuModel creteBuku(@RequestBody BukuModel buku) {
         log.info("Request received", kv("action", "CREATE"), kv("judul", buku.getJudul()));
         BukuModel result = bukuService.createBuku(buku);
-        log.info("Request completed", kv("action", "CREATE"), kv("status", "SUCCESS"), kv("id", result.getId()));
+        log.info("Request completed", kv("action", "CREATE"), kv("status", "SUKSES"), kv("id", result.getId()));
         return result;
     }
 
@@ -62,7 +62,7 @@ public class BukuController {
     public ResponseEntity<Void> deleteBuku(@PathVariable Long id) {
         log.info("Request received", kv("action", "DELETE"), kv("id", id));
         bukuService.deleteBuku(id);
-        log.info("Request completed", kv("action", "DELETE"), kv("status", "SUCCESS"), kv("id", id));
+        log.info("Request completed", kv("action", "DELETE"), kv("status", "SUKSES"), kv("id", id));
         return ResponseEntity.noContent().build();
     }
 
@@ -71,7 +71,7 @@ public class BukuController {
         log.info("Request received", kv("action", "UPDATE"), kv("id", id));
         BukuModel updated = bukuService.updateBuku(id, buku);
         if (updated != null) {
-            log.info("Request completed", kv("action", "UPDATE"), kv("status", "SUCCESS"), kv("id", id));
+            log.info("Request completed", kv("action", "UPDATE"), kv("status", "SUKSES"), kv("id", id));
             return ResponseEntity.ok(updated);
         } else {
             log.warn("Request completed", kv("action", "UPDATE"), kv("status", "NOT_FOUND"), kv("id", id));

@@ -93,10 +93,10 @@ pipeline {
     
     post {
         success {
-            echo '✅ All services built and tested successfully!'
+            echo 'All services built and tested successfully!'
         }
         failure {
-            echo '❌ Build or test failed!'
+            echo 'Build or test failed!'
         }
         always {
             echo 'Pipeline completed.'
